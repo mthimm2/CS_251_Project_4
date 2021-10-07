@@ -197,7 +197,7 @@ public:
     
       CELL* curr = Rows[r];
 
-      for(int x = 0; x < )
+      //for(int x = 0; x < )
 
 
       return temp;  // TO DO:  update this, it is only here so code compiles.

@@ -26,6 +26,15 @@ TEST(grid, defaultConstructor){
     ASSERT_EQ(g.numcols(2), 4);
     ASSERT_EQ(g.numcols(3), 4);
 
+    // Another way to make sure the number of columns is 4
+    ASSERT_TRUE(!(g.numcols(0) > 4) && !(g.numcols(0) < 4));
+    ASSERT_TRUE(!(g.numcols(1) > 4) && !(g.numcols(1) < 4));
+    ASSERT_TRUE(!(g.numcols(2) > 4) && !(g.numcols(2) < 4));
+    ASSERT_TRUE(!(g.numcols(3) > 4) && !(g.numcols(3) < 4));
+
+    // Bad access attempt for NumCols check.
+    ASSERT_ANY_THROW(!(g.numcols(4) > 4) && !(g.numcols(4) < 4));
+
     // A bad index check of the number of columns
     ASSERT_ANY_THROW(g.numcols(4));
 
@@ -33,6 +42,23 @@ TEST(grid, defaultConstructor){
     // shouldn't produce a throw.
     ASSERT_NO_THROW(g.numcols(3));
 
+    // Now, some grids of different data types
+    Grid<double> d;
+    Grid<string> s;
+
+    // A composed data type grid.
+    Grid< map<int, int> > crazy;
+
+    // Make sure that any data type gets treated the same.
+    // NumCols should = 4
+    ASSERT_EQ(d.numcols(0), 4);
+    ASSERT_EQ(s.numcols(0), 4);
+    ASSERT_EQ(crazy.numcols(0), 4);
+
+    // Number of rows should = 4
+    ASSERT_EQ(d.numrows(), 4);
+    ASSERT_EQ(s.numrows(), 4);
+    ASSERT_EQ(crazy.numrows(), 4);
 }
 
 
