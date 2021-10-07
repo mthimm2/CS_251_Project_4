@@ -153,4 +153,3 @@ TEST(grid, defaultConstructor){
 //    MazeCell* start = m.twistyMazeFor(kYourName);
 //    EXPECT_TRUE(isPathToFreedom(start, kPathOutOfTwistyMaze));
 //}
-
