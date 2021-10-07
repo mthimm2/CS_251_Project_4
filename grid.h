@@ -20,8 +20,6 @@ private:
     CELL* Next;      // pointer to the next cell in the row
     T Val;           // templated data type that the cell will hold
     size_t NumCols;  // total # of columns (0..NumCols-1)
-    size_t NumRows;  // total # of rows (0..NumRows-1)
-    CELL** Rows;     // C array of linked lists
 
     // Constructor for a cell with default values if needed
     CELL(CELL* _Next = nullptr, T _Val = T(), size_t _NumCols = 0) {
@@ -33,6 +31,9 @@ private:
     }
   };
 
+  size_t NumRows;  // total # of rows (0..NumRows-1)
+  CELL** Rows;     // C array of linked lists
+
 public:
   //
   // default constructor:
@@ -42,8 +43,8 @@ public:
   //
   Grid() {
     // initialize 4 rows
-    CELL** Rows = new CELL*[4];
-    size_t NumRows = 4;
+    Rows = new CELL*[4];
+    NumRows = 4;
 
     // allocate the first cell of the linked list with default value:
     for (size_t r = 0; r < NumRows; ++r) {
@@ -74,8 +75,8 @@ public:
   Grid(size_t R, size_t C) {
     
       // Start by setting the number of rows and the size variable
-      CELL** Rows = new CELL*[R];
-      size_t NumRows = R;
+      Rows = new CELL*[R];
+      NumRows = R;
 
       // Now, create each row
       for(size_t r = 0; r < NumRows; ++r) {
@@ -156,12 +157,10 @@ public:
   //
   size_t numcols(size_t r) const {
       // Make sure there's no funny business going on.
-      if(this->Rows[0] == nullptr) {
-        return 0;
-      } else if (this->NumRows == 0) {
-        return 0;
+      if(r >= this->NumRows || r < 0) {
+        throw runtime_error("Row index out of bounds!");
       } else {
-        return this->Rows[0]->NumCols;
+        return this->Rows[r]->NumCols;
       }
   }
 
@@ -191,8 +190,14 @@ public:
   T& operator()(size_t r, size_t c) {
       T temp;
       
+      // Defense, first and foremost.
+      if(r > NumRows || r < 0) {
+        return temp;
+      }
     
-      // TO DO:  Write this function.
+      CELL* curr = Rows[r];
+
+      for(int x = 0; x < )
 
 
       return temp;  // TO DO:  update this, it is only here so code compiles.

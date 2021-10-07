@@ -3,17 +3,36 @@
 #include <map>
 #include <sstream>
 #include <set>
-#include "maze.h"
+//#include "maze.h"
 #include "grid.h"
-#include "EscapeTheLabyrinth.h"
+//#include "EscapeTheLabyrinth.h"
 
 
 TEST(grid, defaultConstructor){
     
-    
     // TO DO:  Write 100s of asserts per member function.
     
-    
+    // Instantiate a grid using the default constructor
+    Grid<int> g;
+
+    // Number of rows should be 4 for the default constructor.
+    ASSERT_EQ(g.numrows(), 4);
+    ASSERT_TRUE(!(g.numrows() < 4));
+    ASSERT_TRUE(!(g.numrows() > 4));
+
+    // Number of columns check with good behavior
+    ASSERT_EQ(g.numcols(0), 4);
+    ASSERT_EQ(g.numcols(1), 4);
+    ASSERT_EQ(g.numcols(2), 4);
+    ASSERT_EQ(g.numcols(3), 4);
+
+    // A bad index check of the number of columns
+    ASSERT_ANY_THROW(g.numcols(4));
+
+    // A good index check for the number of columns
+    // shouldn't produce a throw.
+    ASSERT_NO_THROW(g.numcols(3));
+
 }
 
 
@@ -153,3 +172,9 @@ TEST(grid, defaultConstructor){
 //    MazeCell* start = m.twistyMazeFor(kYourName);
 //    EXPECT_TRUE(isPathToFreedom(start, kPathOutOfTwistyMaze));
 //}
+
+int main(int argc, char** argv) {
+    testing::InitGoogleTest(&argc, argv);
+    int result = RUN_ALL_TESTS();
+    return result;
+}
