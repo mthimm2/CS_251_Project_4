@@ -91,7 +91,7 @@ public:
           curr->Next = new CELL(nullptr, T());
 
           // Advance to the next cell
-          curr = curr->next;
+          curr = curr->Next;
         }
       } 
   }
