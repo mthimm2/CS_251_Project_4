@@ -119,6 +119,8 @@ TEST(grid, parameterizedConstructorVarying) {
     Grid<char> d(0, 8345);
     Grid<vector <map <int, int> > > crazy (19, 62);
 
+    cout << "Starting Varied Paramerized Constructor Tests" << endl;
+
     // tests for grid a
     cout << "testing varied a" << endl;
     ASSERT_EQ(a.numrows(), 57);
@@ -151,12 +153,6 @@ TEST(grid, parameterizedConstructorVarying) {
     ASSERT_NE(c.numrows(), 4);
     ASSERT_EQ(c.numcols(0), 0);
     ASSERT_EQ(c.numcols(20), 0);
-    ASSERT_EQ(c.numcols(40), 0);
-    ASSERT_ANY_THROW(c.numcols(41));
-    ASSERT_NE(c.numcols(0), 4);
-
-    // tests for d
-    cout << "testing varied d" << endl;
     ASSERT_EQ(d.numrows(), 0);
     ASSERT_NE(d.numrows(), 4);
     ASSERT_ANY_THROW(d.numcols(0));
@@ -173,7 +169,60 @@ TEST(grid, parameterizedConstructorVarying) {
     cout << "Finished Parameterized Constructor Varied tests" << endl;
 }
 
+TEST(grid, numRows) {
 
+    Grid<set<int>*> a(57, 12);
+    Grid<unsigned int> b(498, 861);
+    Grid<long long> c(41, 0);
+    Grid<short> d(0, 8345);
+    Grid<map<int , vector< set<string> > > > crazy (19, 62);
+    Grid<int> plainJane;
+
+    cout << "Testing numrows" << endl;
+    
+    // test a
+    cout << "testing numrows a" << endl;
+    ASSERT_EQ(a.numrows(), 57);
+    ASSERT_NE(a.numrows(), 4);
+
+    // test b
+    cout << "testing numrows b" << endl;
+    ASSERT_EQ(b.numrows(), 498);
+    ASSERT_NE(b.numrows(), 4);
+
+    // test c
+    cout << "testing numrows c" << endl;
+    ASSERT_EQ(c.numrows(), 41);
+    ASSERT_NE(c.numrows(), 4);
+
+    // test d
+    cout << "testing numrows d" << endl;
+    ASSERT_EQ(d.numrows(), 0);
+    ASSERT_NE(d.numrows(), 4);
+
+    // test crazy
+    cout << "testing numrows crazy" << endl;
+    ASSERT_EQ(crazy.numrows(), 19);
+    ASSERT_NE(crazy.numrows(), 4);
+
+    // test plainJane
+    ASSERT_EQ(plainJane.numrows(), 4);
+    ASSERT_FALSE(plainJane.numrows() != 4);
+    cout << "Finished numrows tests" << endl;
+
+}
+
+TEST(grid, numCols) {
+
+    cout << "Testing numcols" << endl;
+
+
+    cout << "Finished numcols tests" << endl;
+}
+
+TEST(grid, sizeOf) {
+
+}
 
 // TO DO:  Write many TESTs, at least one for, if not more,
 // for each member function.  Each tests should have 100s of assertions.

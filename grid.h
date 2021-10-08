@@ -172,9 +172,21 @@ public:
   //
   size_t size() const {
       
-      // TO DO:  Write this function.
-      
-      return 0;  // TO DO:  update this, it is only here so code compiles.
+      // If there's no rows, then there's no elements
+      if(this->NumRows == 0) {
+        return 0;
+      } else if(this->NumRows > 0 && this->Rows[0] == nullptr) {
+        // If there's rows, but no columns, there's no elements
+        return 0;
+      } else if (this->NumRows > 0 && this->Rows[0]->Val == 0) {
+        // If there's rows and zero columns explicitly, there's not elements
+        return 0;
+      } else if (this->NumRows > 0 && this->Rows[0]->Val != 0) {
+        // If there's rows and columns, there's elements
+        return this->NumRows * this->Rows[0]->Val;
+      } else {
+        throw runtime_error("Cannot obtain size for given grid!");
+      }
   }
 
 
