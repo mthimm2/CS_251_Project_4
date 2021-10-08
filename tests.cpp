@@ -7,7 +7,6 @@
 #include "grid.h"
 //#include "EscapeTheLabyrinth.h"
 
-
 TEST(grid, defaultConstructor){
     
     // TO DO:  Write 100s of asserts per member function.
@@ -61,7 +60,118 @@ TEST(grid, defaultConstructor){
     ASSERT_EQ(crazy.numrows(), 4);
 }
 
+TEST(grid, parameterizedConstructorInt) {
 
+    // create a mix of grids with varying dimensions.
+    // Some of these should produce bad behavior
+    Grid<int> a(1,1);
+    Grid<int> b(1,2);
+    Grid<int> c(2,2);
+    Grid<int> d(0,1);
+    Grid<int> e(1,0);
+
+    // Check certain aspects of grid a
+    cout << "Starting Paramerized Constructor Tests" << endl;
+    cout << "testing a" << endl;
+    ASSERT_EQ(a.numrows(), 1);
+    ASSERT_EQ(a.numcols(0), 1);
+    ASSERT_NE(a.numcols(0), 4);
+    ASSERT_NE(a.numrows(), 4);
+    ASSERT_ANY_THROW(a.numcols(1));
+
+    // check aspects of grid b
+    cout << "testing b" << endl;
+    ASSERT_EQ(b.numrows(), 1);
+    ASSERT_EQ(b.numcols(0), 2);
+    ASSERT_NE(b.numcols(0), 4);
+    ASSERT_NE(b.numrows(), 2);
+    ASSERT_ANY_THROW(b.numcols(2));
+
+    // Check aspects of grid c
+    cout << "testing c" << endl;
+    ASSERT_EQ(c.numrows(), 2);
+    ASSERT_EQ(c.numcols(0), 2);
+    ASSERT_EQ(c.numcols(1), 2);
+    ASSERT_NE(c.numrows(), 3);
+    ASSERT_ANY_THROW(c.numcols(2));
+
+    // Check aspects of grid d
+    cout << "testing d" << endl;
+    ASSERT_EQ(d.numrows(), 0);
+    ASSERT_ANY_THROW(d.numcols(0));
+    ASSERT_ANY_THROW(d.numcols(1));
+    ASSERT_NE(d.numrows(), 1);
+
+    cout << "testing e" << endl;
+    ASSERT_EQ(e.numrows(), 1);
+    ASSERT_NE(e.numrows(), 4);
+    ASSERT_EQ(e.numcols(0), 0);
+    ASSERT_ANY_THROW(e.numcols(1));
+    cout << "Finished Parameterized Constructor int tests" << endl;
+}
+
+TEST(grid, parameterizedConstructorVarying) {
+
+    // Grids of different data types with wild dimensions
+    Grid<string> a(57, 12);
+    Grid<double> b(498, 861);
+    Grid<float> c(41, 0);
+    Grid<char> d(0, 8345);
+    Grid<vector <map <int, int> > > crazy (19, 62);
+
+    // tests for grid a
+    cout << "testing varied a" << endl;
+    ASSERT_EQ(a.numrows(), 57);
+    ASSERT_EQ(a.numcols(0), 12);
+    ASSERT_EQ(a.numcols(1), 12);
+    ASSERT_EQ(a.numcols(2), 12);
+    ASSERT_EQ(a.numcols(3), 12);
+    ASSERT_EQ(a.numcols(4), 12);
+    ASSERT_EQ(a.numcols(5), 12);
+    ASSERT_EQ(a.numcols(6), 12);
+    ASSERT_EQ(a.numcols(7), 12);
+    ASSERT_EQ(a.numcols(8), 12);
+    ASSERT_EQ(a.numcols(11), 12);
+    ASSERT_NE(a.numrows(), 4);
+    ASSERT_ANY_THROW(a.numcols(58));
+
+    // tests for b
+    cout << "testing varied b" << endl;
+    ASSERT_EQ(b.numrows(), 498);
+    ASSERT_EQ(b.numcols(0), 861);
+    ASSERT_EQ(b.numcols(200), 861);
+    ASSERT_EQ(b.numcols(497), 861);
+    ASSERT_ANY_THROW(b.numcols(498));
+    ASSERT_NE(b.numrows(), 4);
+    ASSERT_NE(b.numcols(0), 4);
+
+    // tests for c
+    cout << "testing varied c" << endl;
+    ASSERT_EQ(c.numrows(), 41);
+    ASSERT_NE(c.numrows(), 4);
+    ASSERT_EQ(c.numcols(0), 0);
+    ASSERT_EQ(c.numcols(20), 0);
+    ASSERT_EQ(c.numcols(40), 0);
+    ASSERT_ANY_THROW(c.numcols(41));
+    ASSERT_NE(c.numcols(0), 4);
+
+    // tests for d
+    cout << "testing varied d" << endl;
+    ASSERT_EQ(d.numrows(), 0);
+    ASSERT_NE(d.numrows(), 4);
+    ASSERT_ANY_THROW(d.numcols(0));
+    ASSERT_ANY_THROW(d.numcols(1));
+
+    // tests for crazy
+    cout << "testing varied crazy" << endl;
+    ASSERT_EQ(crazy.numrows(), 19);
+    ASSERT_NE(crazy.numrows(), 4);
+    ASSERT_EQ(crazy.numcols(0), 62);
+    ASSERT_EQ(crazy.numcols(10), 62);
+    ASSERT_EQ(crazy.numcols(18), 62);
+    ASSERT_ANY_THROW(crazy.numcols(19));
+    cout << "Finished Parameterized Constructor Varied tests" << endl;
+}
 
 
 
