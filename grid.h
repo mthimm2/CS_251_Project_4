@@ -178,12 +178,12 @@ public:
       } else if(this->NumRows > 0 && this->Rows[0] == nullptr) {
         // If there's rows, but no columns, there's no elements
         return 0;
-      } else if (this->NumRows > 0 && this->Rows[0]->Val == 0) {
+      } else if (this->NumRows > 0 && this->Rows[0]->NumCols == 0) {
         // If there's rows and zero columns explicitly, there's not elements
         return 0;
-      } else if (this->NumRows > 0 && this->Rows[0]->Val != 0) {
+      } else if (this->NumRows > 0 && this->Rows[0]->NumCols!= 0) {
         // If there's rows and columns, there's elements
-        return this->NumRows * this->Rows[0]->Val;
+        return this->NumRows * this->Rows[0]->NumCols;
       } else {
         throw runtime_error("Cannot obtain size for given grid!");
       }
@@ -200,19 +200,33 @@ public:
   //    cout << grid(r, c) << endl;
   //
   T& operator()(size_t r, size_t c) {
-      T temp;
       
+      // How we know that the user is requesting a bad row.
+      bool invalidRow = (r >= NumRows || r < 0);
+
       // Defense, first and foremost.
-      if(r > NumRows || r < 0) {
-        return temp;
+      if(invalidRow) {
+        throw runtime_error("Error: Invalid Row Index!");
+      } else {
+        // How we know the user is requesting a bad column.
+        bool invalidCol = (c >= this->Rows[0]->NumCols || c < 0);
+        
+        if (invalidCol) {
+          throw runtime_error("Error: Invalid Column Index!");
+        } else {
+        // Set up access to the first cell in the row that the user wanted.
+        // The -1 is to compensate for the fact that the grid is 0 indexed
+        CELL* curr = Rows[r];
+
+        // The -1 is to compensate for the fact that the columns are 0 indexed.
+        for(int x = 0; x < c; ++x) {
+          // Walk until we hit the column the user wants.
+          curr = curr->Next;
+        }
+        // Return the value stored in that cell.
+        return curr->Val;
       }
-    
-      CELL* curr = Rows[r];
-
-      //for(int x = 0; x < )
-
-
-      return temp;  // TO DO:  update this, it is only here so code compiles.
+    }
   }
 
   //

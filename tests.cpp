@@ -299,6 +299,144 @@ TEST(grid, numCols) {
 
 TEST(grid, sizeOf) {
 
+    cout << "Testing grid size" << endl;
+
+    // Default constructor grids
+    Grid<int> plainA;
+    Grid<string> plainB;
+    Grid<double> plainC;
+
+    // Parameterized constructor grids
+    Grid<set<float> > a(21,94);
+    Grid<map<vector<int>, string> > b(258, 703);
+    Grid<short*> c(0, 1);
+    Grid<vector<int> > d(23422, 0);
+    Grid<char> e(0, 0);
+
+    // test plainA
+    cout << "testing size plainA" << endl;
+    ASSERT_EQ(plainA.size(), 16);
+    ASSERT_FALSE(plainA.size() > 16);
+    ASSERT_FALSE(plainA.size() < 16);
+    ASSERT_NE(plainA.size(), 0);
+
+    // test plainB
+    cout << "testing size plainB" << endl;
+    ASSERT_EQ(plainB.size(), 16);
+    ASSERT_FALSE(plainB.size() > 16);
+    ASSERT_FALSE(plainB.size() < 16);
+    ASSERT_NE(plainB.size(), 0);
+
+    // testing plainC
+    cout << "testing size plainC" << endl;
+    ASSERT_EQ(plainC.size(), 16);
+    ASSERT_FALSE(plainC.size() > 16);
+    ASSERT_FALSE(plainC.size() < 16);
+    ASSERT_NE(plainC.size(), 0);
+
+    // test a
+    cout << "testing size a" << endl;
+    ASSERT_EQ(a.size(), 1974);
+    ASSERT_FALSE(a.size() > 1974);
+    ASSERT_FALSE(a.size() < 1974);
+    ASSERT_NE(a.size(), 0);
+
+    // test b
+    cout << "testing size b" << endl;
+    ASSERT_EQ(b.size(), 181374);
+    ASSERT_FALSE(b.size() > 181374);
+    ASSERT_FALSE(b.size() < 181374);
+    ASSERT_NE(b.size(), 0);
+
+    // test c
+    cout << "testing size c" << endl;
+    ASSERT_EQ(c.size(), 0);
+    ASSERT_FALSE(c.size() > 0);
+    ASSERT_FALSE(c.size() < 0);
+    ASSERT_NE(c.size(), 1);
+
+    // test d
+    cout << "testing size d" << endl;
+    ASSERT_EQ(d.size(), 0);
+    ASSERT_FALSE(d.size() > 0);
+    ASSERT_FALSE(d.size() < 0);
+    ASSERT_NE(d.size(), 1);
+
+    // test e
+    cout << "testing size e" << endl;
+    ASSERT_EQ(e.size(), 0);
+    ASSERT_FALSE(e.size() > 0);
+    ASSERT_FALSE(e.size() < 0);
+    ASSERT_NE(e.size(), 1);
+
+    cout << "Finished size tests" << endl;
+}
+
+TEST(grid, gridAccessOperator ) {
+
+    // Default constructor grids
+    Grid<int> plainA;
+
+    // Parameterized constructor grids
+    Grid<set<float> > a(21,94);
+    Grid<int> b(258, 703);
+    Grid<string> c(0, 1);
+    Grid<vector<int> > d(23422, 0);
+
+    // test plainA
+    cout << "testing operator() plainA" << endl;
+    ASSERT_EQ(plainA(0, 0), 0);
+    ASSERT_EQ(plainA(0, 1), 0);
+    ASSERT_EQ(plainA(0, 2), 0);
+    ASSERT_EQ(plainA(0, 3), 0);
+    ASSERT_EQ(plainA(1, 0), 0);
+    ASSERT_EQ(plainA(1, 1), 0);
+    ASSERT_EQ(plainA(1, 2), 0);
+    ASSERT_EQ(plainA(1, 3), 0);
+    ASSERT_EQ(plainA(2, 0), 0);
+    ASSERT_EQ(plainA(2, 1), 0);
+    ASSERT_EQ(plainA(2, 2), 0);
+    ASSERT_EQ(plainA(2, 3), 0);
+    ASSERT_EQ(plainA(3, 0), 0);
+    ASSERT_EQ(plainA(3, 1), 0);
+    ASSERT_EQ(plainA(3, 2), 0);
+    ASSERT_EQ(plainA(3, 3), 0);
+    ASSERT_ANY_THROW(plainA(4, 0));
+    ASSERT_NE(plainA(0, 0), 1);
+    ASSERT_FALSE(plainA(0, 0) > 0);
+    ASSERT_FALSE(plainA(0, 0) < 0);
+
+    // test a
+    cout << "testing operator() a" << endl;
+    ASSERT_EQ(a(0, 0), set<float>());
+    ASSERT_EQ(a(10, 93), set<float>());
+    ASSERT_EQ(a(20, 48), set<float>());
+    ASSERT_ANY_THROW(a(21, 0));
+    ASSERT_ANY_THROW(a(21, -1));
+
+
+    // test b
+    cout << "testing operator() b" << endl;
+    ASSERT_EQ(b(0, 0), 0);
+    ASSERT_EQ(b(129, 351), 0);
+    ASSERT_EQ(b(257, 702), 0);
+    ASSERT_NE(b(257, 702), 1);
+    ASSERT_ANY_THROW(b(258, -1));
+    ASSERT_ANY_THROW(b(0, -1));
+
+    // test c
+    cout << "testing operator() c" << endl;
+    ASSERT_ANY_THROW(c(-1, 0));
+    ASSERT_ANY_THROW(c(0, 1));
+    ASSERT_ANY_THROW(c(1, 1));
+    ASSERT_ANY_THROW(c(2, 1));
+
+    // test d
+    cout << "testing operator() d" << endl;
+    ASSERT_ANY_THROW(d(0, 1));
+    ASSERT_ANY_THROW(d(23422, 0));
+
+    cout << "Finished operator() tests" << endl;
 }
 
 // TO DO:  Write many TESTs, at least one for, if not more,
