@@ -224,6 +224,7 @@ TEST(grid, numCols) {
     Grid<map<vector<int>, string> > b(258, 703);
     Grid<short*> c(0, 1);
     Grid<vector<int> > d(23422, 0);
+    Grid<char> e(0, 0);
 
     cout << "Testing numcols" << endl;
 
@@ -286,6 +287,11 @@ TEST(grid, numCols) {
     ASSERT_EQ(d.numcols(23421), 0);
     ASSERT_NE(d.numcols(0), 4);
     ASSERT_ANY_THROW(d.numcols(23422));
+
+    // test e
+    cout << "testing numcols e" << endl;
+    ASSERT_ANY_THROW(e.numcols(0));
+    ASSERT_ANY_THROW(e.numcols(1));
 
     // Finished this test
     cout << "Finished numcols tests" << endl;
