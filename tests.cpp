@@ -214,9 +214,80 @@ TEST(grid, numRows) {
 
 TEST(grid, numCols) {
 
+    // Default constructor grids
+    Grid<int> plainA;
+    Grid<string> plainB;
+    Grid<double> plainC;
+
+    // Parameterized constructor grids
+    Grid<set<float> > a(21,94);
+    Grid<map<vector<int>, string> > b(258, 703);
+    Grid<short*> c(0, 1);
+    Grid<vector<int> > d(23422, 0);
+
     cout << "Testing numcols" << endl;
 
+    // test plainA
+    cout << "testing numcols plainA" << endl;
+    ASSERT_EQ(plainA.numcols(0), 4);
+    ASSERT_EQ(plainA.numcols(1), 4);
+    ASSERT_EQ(plainA.numcols(2), 4);
+    ASSERT_EQ(plainA.numcols(3), 4);
+    ASSERT_ANY_THROW(plainA.numcols(4));
+    ASSERT_FALSE(plainA.numcols(0) != 4);
 
+    // test plainB 
+    cout << "testing numcols plainB" << endl;
+    ASSERT_EQ(plainB.numcols(0), 4);
+    ASSERT_EQ(plainB.numcols(1), 4);
+    ASSERT_EQ(plainB.numcols(2), 4);
+    ASSERT_EQ(plainB.numcols(3), 4);
+    ASSERT_ANY_THROW(plainB.numcols(4));
+    ASSERT_FALSE(plainB.numcols(0) != 4);
+
+    // test plainC
+    cout << "testing numcols plainC" << endl;
+    ASSERT_EQ(plainC.numcols(0), 4);
+    ASSERT_EQ(plainC.numcols(1), 4);
+    ASSERT_EQ(plainC.numcols(2), 4);
+    ASSERT_EQ(plainC.numcols(3), 4);
+    ASSERT_ANY_THROW(plainC.numcols(4));
+    ASSERT_FALSE(plainC.numcols(0) != 4);
+
+    // test a
+    cout << "testing numcols a" << endl;
+    ASSERT_EQ(a.numcols(0), 94);
+    ASSERT_EQ(a.numcols(10), 94);
+    ASSERT_EQ(a.numcols(20), 94);
+    ASSERT_NE(a.numcols(0), 4);
+    ASSERT_FALSE(a.numcols(0) > 94  || a.numcols(0) < 94);
+    ASSERT_ANY_THROW(a.numcols(21));
+    ASSERT_ANY_THROW(a.numcols(-1));
+
+    // test b
+    cout << "testing numcols b" << endl;
+    ASSERT_EQ(b.numcols(0), 703);
+    ASSERT_EQ(b.numcols(129), 703);
+    ASSERT_EQ(b.numcols(257), 703);
+    ASSERT_NE(b.numcols(0), 4);
+    ASSERT_FALSE(b.numcols(0) > 703 || b.numcols(0) < 703);
+    ASSERT_ANY_THROW(b.numcols(258));
+    ASSERT_ANY_THROW(b.numcols(-1));
+    
+    // test c
+    cout << "testing numcols c" << endl;
+    ASSERT_ANY_THROW(c.numcols(0));
+    ASSERT_ANY_THROW(c.numcols(1));
+
+    // test d
+    cout << "testing numcols d" << endl;
+    ASSERT_EQ(d.numcols(0), 0);
+    ASSERT_EQ(d.numcols(12000), 0);
+    ASSERT_EQ(d.numcols(23421), 0);
+    ASSERT_NE(d.numcols(0), 4);
+    ASSERT_ANY_THROW(d.numcols(23422));
+
+    // Finished this test
     cout << "Finished numcols tests" << endl;
 }
 
