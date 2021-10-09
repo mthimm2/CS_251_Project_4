@@ -121,6 +121,9 @@ public:
   Grid(const Grid<T>& other) {
       
       // TO DO:  Write this copy constructor.
+
+    this->Rows = new CELL* [other.NumRows];
+    cout << other.NumRows << endl;
   
   }
     
@@ -246,6 +249,8 @@ public:
         // Header
         cout << "Grid Contents:" << endl;
         cout << "Columns:\t";
+
+        // Print out the column numbers
         for(int y = 0; y < this->Rows[0]->NumCols; ++y) {
           cout << y << " ";
         }
@@ -253,19 +258,24 @@ public:
         // Formatting
         cout << endl;
 
-        // Start printing out all of the column contents
+        // Start printing out all of the row contents
         for(int x = 0; x < NumRows; ++x) {
           
           // Start of the row
-          CELL* curr = this->Rows[x];          
+          CELL* curr = this->Rows[x];
+
+          // More formatting          
           cout << x << ":\t\t";
+
+          // Traverse the row.
           for(int j = 0; j < this->Rows[x]->NumCols; ++j) {
             cout << curr->Val << " ";
             curr = curr->Next;
+          }
         }
+        // New line for each row
         cout << endl;
       }
     }
-   }
   }
 };

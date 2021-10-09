@@ -72,7 +72,7 @@ TEST(grid, parameterizedConstructorInt) {
 
     // Check certain aspects of grid a
     cout << "Starting Paramerized Constructor Tests" << endl;
-    cout << "testing a" << endl;
+    // cout << "testing a" << endl;
     ASSERT_EQ(a.numrows(), 1);
     ASSERT_EQ(a.numcols(0), 1);
     ASSERT_NE(a.numcols(0), 4);
@@ -80,7 +80,7 @@ TEST(grid, parameterizedConstructorInt) {
     ASSERT_ANY_THROW(a.numcols(1));
 
     // check aspects of grid b
-    cout << "testing b" << endl;
+    // cout << "testing b" << endl;
     ASSERT_EQ(b.numrows(), 1);
     ASSERT_EQ(b.numcols(0), 2);
     ASSERT_NE(b.numcols(0), 4);
@@ -88,7 +88,7 @@ TEST(grid, parameterizedConstructorInt) {
     ASSERT_ANY_THROW(b.numcols(2));
 
     // Check aspects of grid c
-    cout << "testing c" << endl;
+    // cout << "testing c" << endl;
     ASSERT_EQ(c.numrows(), 2);
     ASSERT_EQ(c.numcols(0), 2);
     ASSERT_EQ(c.numcols(1), 2);
@@ -96,13 +96,13 @@ TEST(grid, parameterizedConstructorInt) {
     ASSERT_ANY_THROW(c.numcols(2));
 
     // Check aspects of grid d
-    cout << "testing d" << endl;
+    // cout << "testing d" << endl;
     ASSERT_EQ(d.numrows(), 0);
     ASSERT_ANY_THROW(d.numcols(0));
     ASSERT_ANY_THROW(d.numcols(1));
     ASSERT_NE(d.numrows(), 1);
 
-    cout << "testing e" << endl;
+    // cout << "testing e" << endl;
     ASSERT_EQ(e.numrows(), 1);
     ASSERT_NE(e.numrows(), 4);
     ASSERT_EQ(e.numcols(0), 0);
@@ -122,7 +122,7 @@ TEST(grid, parameterizedConstructorVarying) {
     cout << "Starting Varied Paramerized Constructor Tests" << endl;
 
     // tests for grid a
-    cout << "testing varied a" << endl;
+    // cout << "testing varied a" << endl;
     ASSERT_EQ(a.numrows(), 57);
     ASSERT_EQ(a.numcols(0), 12);
     ASSERT_EQ(a.numcols(1), 12);
@@ -138,7 +138,7 @@ TEST(grid, parameterizedConstructorVarying) {
     ASSERT_ANY_THROW(a.numcols(58));
 
     // tests for b
-    cout << "testing varied b" << endl;
+    // cout << "testing varied b" << endl;
     ASSERT_EQ(b.numrows(), 498);
     ASSERT_EQ(b.numcols(0), 861);
     ASSERT_EQ(b.numcols(200), 861);
@@ -148,7 +148,7 @@ TEST(grid, parameterizedConstructorVarying) {
     ASSERT_NE(b.numcols(0), 4);
 
     // tests for c
-    cout << "testing varied c" << endl;
+    // cout << "testing varied c" << endl;
     ASSERT_EQ(c.numrows(), 41);
     ASSERT_NE(c.numrows(), 4);
     ASSERT_EQ(c.numcols(0), 0);
@@ -159,7 +159,7 @@ TEST(grid, parameterizedConstructorVarying) {
     ASSERT_ANY_THROW(d.numcols(1));
 
     // tests for crazy
-    cout << "testing varied crazy" << endl;
+    // cout << "testing varied crazy" << endl;
     ASSERT_EQ(crazy.numrows(), 19);
     ASSERT_NE(crazy.numrows(), 4);
     ASSERT_EQ(crazy.numcols(0), 62);
@@ -181,27 +181,27 @@ TEST(grid, numRows) {
     cout << "Testing numrows" << endl;
     
     // test a
-    cout << "testing numrows a" << endl;
+    // cout << "testing numrows a" << endl;
     ASSERT_EQ(a.numrows(), 57);
     ASSERT_NE(a.numrows(), 4);
 
     // test b
-    cout << "testing numrows b" << endl;
+    // cout << "testing numrows b" << endl;
     ASSERT_EQ(b.numrows(), 498);
     ASSERT_NE(b.numrows(), 4);
 
     // test c
-    cout << "testing numrows c" << endl;
+    // cout << "testing numrows c" << endl;
     ASSERT_EQ(c.numrows(), 41);
     ASSERT_NE(c.numrows(), 4);
 
     // test d
-    cout << "testing numrows d" << endl;
+    // cout << "testing numrows d" << endl;
     ASSERT_EQ(d.numrows(), 0);
     ASSERT_NE(d.numrows(), 4);
 
     // test crazy
-    cout << "testing numrows crazy" << endl;
+    // cout << "testing numrows crazy" << endl;
     ASSERT_EQ(crazy.numrows(), 19);
     ASSERT_NE(crazy.numrows(), 4);
 
@@ -229,7 +229,7 @@ TEST(grid, numCols) {
     cout << "Testing numcols" << endl;
 
     // test plainA
-    cout << "testing numcols plainA" << endl;
+    // cout << "testing numcols plainA" << endl;
     ASSERT_EQ(plainA.numcols(0), 4);
     ASSERT_EQ(plainA.numcols(1), 4);
     ASSERT_EQ(plainA.numcols(2), 4);
@@ -238,7 +238,7 @@ TEST(grid, numCols) {
     ASSERT_FALSE(plainA.numcols(0) != 4);
 
     // test plainB 
-    cout << "testing numcols plainB" << endl;
+    // cout << "testing numcols plainB" << endl;
     ASSERT_EQ(plainB.numcols(0), 4);
     ASSERT_EQ(plainB.numcols(1), 4);
     ASSERT_EQ(plainB.numcols(2), 4);
@@ -247,7 +247,7 @@ TEST(grid, numCols) {
     ASSERT_FALSE(plainB.numcols(0) != 4);
 
     // test plainC
-    cout << "testing numcols plainC" << endl;
+    // cout << "testing numcols plainC" << endl;
     ASSERT_EQ(plainC.numcols(0), 4);
     ASSERT_EQ(plainC.numcols(1), 4);
     ASSERT_EQ(plainC.numcols(2), 4);
@@ -256,7 +256,7 @@ TEST(grid, numCols) {
     ASSERT_FALSE(plainC.numcols(0) != 4);
 
     // test a
-    cout << "testing numcols a" << endl;
+    // cout << "testing numcols a" << endl;
     ASSERT_EQ(a.numcols(0), 94);
     ASSERT_EQ(a.numcols(10), 94);
     ASSERT_EQ(a.numcols(20), 94);
@@ -266,7 +266,7 @@ TEST(grid, numCols) {
     ASSERT_ANY_THROW(a.numcols(-1));
 
     // test b
-    cout << "testing numcols b" << endl;
+    // cout << "testing numcols b" << endl;
     ASSERT_EQ(b.numcols(0), 703);
     ASSERT_EQ(b.numcols(129), 703);
     ASSERT_EQ(b.numcols(257), 703);
@@ -276,12 +276,12 @@ TEST(grid, numCols) {
     ASSERT_ANY_THROW(b.numcols(-1));
     
     // test c
-    cout << "testing numcols c" << endl;
+    // cout << "testing numcols c" << endl;
     ASSERT_ANY_THROW(c.numcols(0));
     ASSERT_ANY_THROW(c.numcols(1));
 
     // test d
-    cout << "testing numcols d" << endl;
+    // cout << "testing numcols d" << endl;
     ASSERT_EQ(d.numcols(0), 0);
     ASSERT_EQ(d.numcols(12000), 0);
     ASSERT_EQ(d.numcols(23421), 0);
@@ -289,7 +289,7 @@ TEST(grid, numCols) {
     ASSERT_ANY_THROW(d.numcols(23422));
 
     // test e
-    cout << "testing numcols e" << endl;
+    // cout << "testing numcols e" << endl;
     ASSERT_ANY_THROW(e.numcols(0));
     ASSERT_ANY_THROW(e.numcols(1));
 
@@ -314,56 +314,56 @@ TEST(grid, sizeOf) {
     Grid<char> e(0, 0);
 
     // test plainA
-    cout << "testing size plainA" << endl;
+    // cout << "testing size plainA" << endl;
     ASSERT_EQ(plainA.size(), 16);
     ASSERT_FALSE(plainA.size() > 16);
     ASSERT_FALSE(plainA.size() < 16);
     ASSERT_NE(plainA.size(), 0);
 
     // test plainB
-    cout << "testing size plainB" << endl;
+    // cout << "testing size plainB" << endl;
     ASSERT_EQ(plainB.size(), 16);
     ASSERT_FALSE(plainB.size() > 16);
     ASSERT_FALSE(plainB.size() < 16);
     ASSERT_NE(plainB.size(), 0);
 
     // testing plainC
-    cout << "testing size plainC" << endl;
+    // cout << "testing size plainC" << endl;
     ASSERT_EQ(plainC.size(), 16);
     ASSERT_FALSE(plainC.size() > 16);
     ASSERT_FALSE(plainC.size() < 16);
     ASSERT_NE(plainC.size(), 0);
 
     // test a
-    cout << "testing size a" << endl;
+    // cout << "testing size a" << endl;
     ASSERT_EQ(a.size(), 1974);
     ASSERT_FALSE(a.size() > 1974);
     ASSERT_FALSE(a.size() < 1974);
     ASSERT_NE(a.size(), 0);
 
     // test b
-    cout << "testing size b" << endl;
+    // cout << "testing size b" << endl;
     ASSERT_EQ(b.size(), 181374);
     ASSERT_FALSE(b.size() > 181374);
     ASSERT_FALSE(b.size() < 181374);
     ASSERT_NE(b.size(), 0);
 
     // test c
-    cout << "testing size c" << endl;
+    // cout << "testing size c" << endl;
     ASSERT_EQ(c.size(), 0);
     ASSERT_FALSE(c.size() > 0);
     ASSERT_FALSE(c.size() < 0);
     ASSERT_NE(c.size(), 1);
 
     // test d
-    cout << "testing size d" << endl;
+    // cout << "testing size d" << endl;
     ASSERT_EQ(d.size(), 0);
     ASSERT_FALSE(d.size() > 0);
     ASSERT_FALSE(d.size() < 0);
     ASSERT_NE(d.size(), 1);
 
     // test e
-    cout << "testing size e" << endl;
+    // cout << "testing size e" << endl;
     ASSERT_EQ(e.size(), 0);
     ASSERT_FALSE(e.size() > 0);
     ASSERT_FALSE(e.size() < 0);
@@ -383,8 +383,10 @@ TEST(grid, gridAccessOperator ) {
     Grid<string> c(0, 1);
     Grid<vector<int> > d(23422, 0);
 
+    cout << "Testing operator()" << endl;
+
     // test plainA
-    cout << "testing operator() plainA" << endl;
+    // cout << "testing operator() plainA" << endl;
     ASSERT_EQ(plainA(0, 0), 0);
     ASSERT_EQ(plainA(0, 1), 0);
     ASSERT_EQ(plainA(0, 2), 0);
@@ -407,7 +409,7 @@ TEST(grid, gridAccessOperator ) {
     ASSERT_FALSE(plainA(0, 0) < 0);
 
     // test a
-    cout << "testing operator() a" << endl;
+    // cout << "testing operator() a" << endl;
     ASSERT_EQ(a(0, 0), set<float>());
     ASSERT_EQ(a(10, 93), set<float>());
     ASSERT_EQ(a(20, 48), set<float>());
@@ -416,7 +418,7 @@ TEST(grid, gridAccessOperator ) {
 
 
     // test b
-    cout << "testing operator() b" << endl;
+    // cout << "testing operator() b" << endl;
     ASSERT_EQ(b(0, 0), 0);
     ASSERT_EQ(b(129, 351), 0);
     ASSERT_EQ(b(257, 702), 0);
@@ -425,32 +427,36 @@ TEST(grid, gridAccessOperator ) {
     ASSERT_ANY_THROW(b(0, -1));
 
     // test c
-    cout << "testing operator() c" << endl;
+    // cout << "testing operator() c" << endl;
     ASSERT_ANY_THROW(c(-1, 0));
     ASSERT_ANY_THROW(c(0, 1));
     ASSERT_ANY_THROW(c(1, 1));
     ASSERT_ANY_THROW(c(2, 1));
 
     // test d
-    cout << "testing operator() d" << endl;
+    // cout << "testing operator() d" << endl;
     ASSERT_ANY_THROW(d(0, 1));
     ASSERT_ANY_THROW(d(23422, 0));
 
     cout << "Finished operator() tests" << endl;
 }
 
-TEST(grid, _output) {
-    Grid<int> a;
-    Grid<int> b(0,1);
-    Grid<int> c(1,0);
-    Grid<int> d(72, 54);
+// TEST(grid, _output) {
+//     Grid<int> a;
+//     Grid<int> b(0,1);
+//     Grid<int> c(1,0);
+//     Grid<int> d(72, 54);
     
-    a._output();
-    b._output();
-    c._output();
-    d._output();
-}
+//     a._output();
+//     b._output();
+//     c._output();
+//     d._output();
+// }
 
+TEST(grid, copyConstructor) {
+    Grid<int> a;
+    Grid<int> b(a);
+}
 // TO DO:  Write many TESTs, at least one for, if not more,
 // for each member function.  Each tests should have 100s of assertions.
 
