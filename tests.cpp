@@ -439,6 +439,18 @@ TEST(grid, gridAccessOperator ) {
     cout << "Finished operator() tests" << endl;
 }
 
+TEST(grid, _output) {
+    Grid<int> a;
+    Grid<int> b(0,1);
+    Grid<int> c(1,0);
+    Grid<int> d(72, 54);
+    
+    a._output();
+    b._output();
+    c._output();
+    d._output();
+}
+
 // TO DO:  Write many TESTs, at least one for, if not more,
 // for each member function.  Each tests should have 100s of assertions.
 

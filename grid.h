@@ -237,8 +237,35 @@ public:
   //
   void _output() {
 
-      // TO DO:  Write this function.
-      
-  }
+    // Check the number of rows
+    if(this->NumRows > 0) {
 
+      // Check the number of columns
+      if(this->Rows[0]->NumCols > 0) {
+
+        // Header
+        cout << "Grid Contents:" << endl;
+        cout << "Columns:\t";
+        for(int y = 0; y < this->Rows[0]->NumCols; ++y) {
+          cout << y << " ";
+        }
+
+        // Formatting
+        cout << endl;
+
+        // Start printing out all of the column contents
+        for(int x = 0; x < NumRows; ++x) {
+          
+          // Start of the row
+          CELL* curr = this->Rows[x];          
+          cout << x << ":\t\t";
+          for(int j = 0; j < this->Rows[x]->NumCols; ++j) {
+            cout << curr->Val << " ";
+            curr = curr->Next;
+        }
+        cout << endl;
+      }
+    }
+   }
+  }
 };
