@@ -74,26 +74,30 @@ public:
   //
   Grid(size_t R, size_t C) {
     
-      // Start by setting the number of rows and the size variable
-      Rows = new CELL*[R];
-      NumRows = R;
+    if(R < 0 || C < 0) {
+      throw runtime_error("Grid(R,C): Invalid Dimensions Supplied!");
+    }
 
-      // Now, create each row
-      for(size_t r = 0; r < NumRows; ++r) {
-        // Only the first cell in each row gets the NumCols attribute set to a non-default value
-        Rows[r] = new CELL(nullptr, T(), C);
+    // Start by setting the number of rows and the size variable
+    Rows = new CELL*[R];
+    NumRows = R;
 
-        // Get ready to traverse
-        CELL* curr = Rows[r];
+    // Now, create each row
+    for(size_t r = 0; r < NumRows; ++r) {
+      // Only the first cell in each row gets the NumCols attribute set to a non-default value
+      Rows[r] = new CELL(nullptr, T(), C);
 
-        for(size_t c = 1; c < Rows[r]->NumCols; ++c) {
-          // Create a new cell without the NumCols value
-          curr->Next = new CELL(nullptr, T());
+      // Get ready to traverse
+      CELL* curr = Rows[r];
 
-          // Advance to the next cell
-          curr = curr->Next;
-        }
-      } 
+      for(size_t c = 1; c < Rows[r]->NumCols; ++c) {
+        // Create a new cell without the NumCols value
+        curr->Next = new CELL(nullptr, T());
+
+        // Advance to the next cell
+        curr = curr->Next;
+      }
+    } 
   }
     
   //
@@ -102,9 +106,8 @@ public:
   // Called automatically by C++ to free the memory associated by the vector.
   //
   virtual ~Grid() {
-
-      
-
+      // Delete the grid
+      deleteGrid();
   }
 
 
@@ -176,11 +179,8 @@ public:
   }
 
   void deleteRow(size_t& r) {
-  
-    this->_output();
     
     while(this->Rows[r]->NumCols > 1) {
-
       // Parallel pointers that we can walk down the list.
       CELL* prev = nullptr;
       CELL* curr = this->Rows[r];
@@ -205,11 +205,16 @@ public:
   void deleteGrid() {
 
     // Check if there's any data at all. If not, we don't need to do anything.
-    if(this->size() != 0) {
+    if(this->NumRows > 0) {
       // Delete each row in the grid
       for(size_t r = 0; r < this->NumRows; ++r) {
         deleteRow(r);
       }
+      // Delete the Rows as well.
+      delete[] Rows;
+    } else {
+      // If the size was zero, just delete the empty rows array
+      delete[] Rows;
     }    
   }
 

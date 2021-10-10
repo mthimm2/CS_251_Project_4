@@ -87,7 +87,7 @@ TEST(grid, parameterizedConstructorInt) {
     ASSERT_NE(b.numrows(), 2);
     ASSERT_ANY_THROW(b.numcols(2));
 
-    // Check aspects of grid c
+    // // Check aspects of grid c
     // cout << "testing c" << endl;
     ASSERT_EQ(c.numrows(), 2);
     ASSERT_EQ(c.numcols(0), 2);
@@ -110,8 +110,7 @@ TEST(grid, parameterizedConstructorInt) {
     cout << "Finished Parameterized Constructor int tests" << endl;
 }
 
-TEST(grid, parameterizedConstructorVarying) {
-
+TEST(grid, parameterizedConstructor) {
     // Grids of different data types with wild dimensions
     Grid<string> a(57, 12);
     Grid<double> b(498, 861);
@@ -122,7 +121,7 @@ TEST(grid, parameterizedConstructorVarying) {
     cout << "Starting Varied Paramerized Constructor Tests" << endl;
 
     // tests for grid a
-    // cout << "testing varied a" << endl;
+    cout << "testing varied a" << endl;
     ASSERT_EQ(a.numrows(), 57);
     ASSERT_EQ(a.numcols(0), 12);
     ASSERT_EQ(a.numcols(1), 12);
@@ -138,7 +137,7 @@ TEST(grid, parameterizedConstructorVarying) {
     ASSERT_ANY_THROW(a.numcols(58));
 
     // tests for b
-    // cout << "testing varied b" << endl;
+    cout << "testing varied b" << endl;
     ASSERT_EQ(b.numrows(), 498);
     ASSERT_EQ(b.numcols(0), 861);
     ASSERT_EQ(b.numcols(200), 861);
@@ -455,26 +454,7 @@ TEST(grid, gridAccessOperator ) {
 //     a._output();
 // }
 
-// TEST(grid, copyConstructor) {
-//     Grid<int> a;
-//     a(0,0) = 2;
-//     a(1,1) = 4;
-//     a(2,2) = 8;
-//     a(3,3) = 16;
-//     ASSERT_ANY_THROW(a(0,-1) = 2);
-//     ASSERT_ANY_THROW(a(0, 4) = 2);
-//     ASSERT_ANY_THROW(a(4, 0) = 2);
-//     ASSERT_ANY_THROW(a(4,-1) = 2);
-//     ASSERT_ANY_THROW(a(4, 4) = 2);
-//     cout << "a's contents" << endl;
-//     a._output();
-//     Grid<int> b(a);
-
-//     cout << "b's contents" << endl;
-//     b._output();
-// }
-
-TEST(grid, copyAssignmentOperator) {
+TEST(grid, copyConstructor) {
     Grid<int> a;
     a(0,0) = 2;
     a(1,1) = 4;
@@ -485,9 +465,28 @@ TEST(grid, copyAssignmentOperator) {
     ASSERT_ANY_THROW(a(4, 0) = 2);
     ASSERT_ANY_THROW(a(4,-1) = 2);
     ASSERT_ANY_THROW(a(4, 4) = 2);
-    Grid<int> b;
-    b = a;
+    //cout << "a's contents" << endl;
+    //a._output();
+    Grid<int> b(a);
+    // cout << "b's contents" << endl;
+    // b._output();
 }
+
+// TEST(grid, copyAssignmentOperator) {
+//     Grid<int> a;
+//     a(0,0) = 2;
+//     a(1,1) = 4;
+//     a(2,2) = 8;
+//     a(3,3) = 16;
+//     ASSERT_ANY_THROW(a(0,-1) = 2);
+//     ASSERT_ANY_THROW(a(0, 4) = 2);
+//     ASSERT_ANY_THROW(a(4, 0) = 2);
+//     ASSERT_ANY_THROW(a(4,-1) = 2);
+//     ASSERT_ANY_THROW(a(4, 4) = 2);
+//     Grid<int> b;
+//     b = a;
+//     b._output();
+// }
 // TO DO:  Write many TESTs, at least one for, if not more,
 // for each member function.  Each tests should have 100s of assertions.
 
