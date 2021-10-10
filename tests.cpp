@@ -443,19 +443,50 @@ TEST(grid, gridAccessOperator ) {
 
 // TEST(grid, _output) {
 //     Grid<int> a;
-//     Grid<int> b(0,1);
-//     Grid<int> c(1,0);
-//     Grid<int> d(72, 54);
-    
+//     a(0,0) = 2;
+//     a(1,1) = 4;
+//     a(2,2) = 8;
+//     a(3,3) = 16;
+//     ASSERT_ANY_THROW(a(0,-1) = 2);
+//     ASSERT_ANY_THROW(a(0, 4) = 2);
+//     ASSERT_ANY_THROW(a(4, 0) = 2);
+//     ASSERT_ANY_THROW(a(4,-1) = 2);
+//     ASSERT_ANY_THROW(a(4, 4) = 2);
 //     a._output();
-//     b._output();
-//     c._output();
-//     d._output();
 // }
 
-TEST(grid, copyConstructor) {
+// TEST(grid, copyConstructor) {
+//     Grid<int> a;
+//     a(0,0) = 2;
+//     a(1,1) = 4;
+//     a(2,2) = 8;
+//     a(3,3) = 16;
+//     ASSERT_ANY_THROW(a(0,-1) = 2);
+//     ASSERT_ANY_THROW(a(0, 4) = 2);
+//     ASSERT_ANY_THROW(a(4, 0) = 2);
+//     ASSERT_ANY_THROW(a(4,-1) = 2);
+//     ASSERT_ANY_THROW(a(4, 4) = 2);
+//     cout << "a's contents" << endl;
+//     a._output();
+//     Grid<int> b(a);
+
+//     cout << "b's contents" << endl;
+//     b._output();
+// }
+
+TEST(grid, copyAssignmentOperator) {
     Grid<int> a;
-    Grid<int> b(a);
+    a(0,0) = 2;
+    a(1,1) = 4;
+    a(2,2) = 8;
+    a(3,3) = 16;
+    ASSERT_ANY_THROW(a(0,-1) = 2);
+    ASSERT_ANY_THROW(a(0, 4) = 2);
+    ASSERT_ANY_THROW(a(4, 0) = 2);
+    ASSERT_ANY_THROW(a(4,-1) = 2);
+    ASSERT_ANY_THROW(a(4, 4) = 2);
+    Grid<int> b;
+    b = a;
 }
 // TO DO:  Write many TESTs, at least one for, if not more,
 // for each member function.  Each tests should have 100s of assertions.

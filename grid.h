@@ -119,12 +119,8 @@ public:
   //   { ... }
   //
   Grid(const Grid<T>& other) {
-      
-      // TO DO:  Write this copy constructor.
-
-    this->Rows = new CELL* [other.NumRows];
-    cout << other.NumRows << endl;
-  
+    // Copy the data from the incoming other grid to a new grid
+    copyData(other);    
   }
     
   //
@@ -133,11 +129,88 @@ public:
   // Called when you assign one vector into another, i.e. this = other;
   //
   Grid& operator=(const Grid& other) {
-      Grid<T> temp;
       
-      // TO DO:  Write this copy operator.
-      
-      return temp;  // TO DO:  update this, it is only here so code compiles.
+      // Assigning us to ourselves check
+      if(this == &other) {
+        return *this;
+      }
+
+      // Free up memory if the grid's size is > 0
+      deleteGrid();
+
+      // Now copy the data over from the other grid to this grid
+      copyData(other);
+
+      // Return the completed copy
+      return *this;
+  }
+
+  void copyData(const Grid<T>& other) {
+    
+    // New up memory for the incoming spec
+    this->Rows = new CELL* [other.NumRows];
+    this->NumRows = other.NumRows;
+
+    // Copy over all data
+    for(size_t r = 0; r < this->NumRows; ++r) {
+
+      // Get two parallel pointers ready for the copy
+      this->Rows[r] = other.Rows[r];
+
+      // Parallel pointers for each grid
+      CELL* otherCurr = other.Rows[r];
+      CELL* thisCurr = this->Rows[r];
+
+      for(size_t c = 1; c < this->Rows[r]->NumCols; ++c) {
+        
+        // Copy all remaining cells in the row
+        thisCurr->Next = otherCurr->Next;
+        thisCurr->Next->Val = otherCurr->Next->Val;
+        thisCurr->Next->NumCols = otherCurr->Next->NumCols;
+
+        // Advance both pointers
+        thisCurr = thisCurr->Next;
+        otherCurr = otherCurr->Next;
+      }
+    }
+  }
+
+  void deleteRow(size_t& r) {
+  
+    this->_output();
+    
+    while(this->Rows[r]->NumCols > 1) {
+
+      // Parallel pointers that we can walk down the list.
+      CELL* prev = nullptr;
+      CELL* curr = this->Rows[r];
+
+      // Go through each column
+      while(curr->Next != nullptr) {
+        // Walk to the end of the row
+        prev = curr;
+        curr = curr->Next;
+      }
+      // Delete the current node
+      delete curr;
+      // Set the prior node's next pointer to nullptr;
+      prev->Next = nullptr;
+      --this->Rows[r]->NumCols;
+    }
+    // Delete the final cell in the row.
+    delete this->Rows[r];
+    this->Rows[r] = nullptr;
+  }
+
+  void deleteGrid() {
+
+    // Check if there's any data at all. If not, we don't need to do anything.
+    if(this->size() != 0) {
+      // Delete each row in the grid
+      for(size_t r = 0; r < this->NumRows; ++r) {
+        deleteRow(r);
+      }
+    }    
   }
 
   //
@@ -184,7 +257,7 @@ public:
       } else if (this->NumRows > 0 && this->Rows[0]->NumCols == 0) {
         // If there's rows and zero columns explicitly, there's not elements
         return 0;
-      } else if (this->NumRows > 0 && this->Rows[0]->NumCols!= 0) {
+      } else if (this->NumRows > 0 && this->Rows[0]->NumCols != 0) {
         // If there's rows and columns, there's elements
         return this->NumRows * this->Rows[0]->NumCols;
       } else {
@@ -237,7 +310,7 @@ public:
   //
   // Outputs the contents of the grid; for debugging purposes.  This is not
   // tested.
-  //
+  //-1
   void _output() {
 
     // Check the number of rows
@@ -272,9 +345,9 @@ public:
             cout << curr->Val << " ";
             curr = curr->Next;
           }
+          // New line for each row
+          cout << endl;
         }
-        // New line for each row
-        cout << endl;
       }
     }
   }
