@@ -71,7 +71,7 @@ TEST(grid, parameterizedConstructorInt) {
     Grid<int> e(1,0);
 
     // Check certain aspects of grid a
-    cout << "Starting Paramerized Constructor Tests" << endl;
+    // cout << "Starting Paramerized Constructor Tests" << endl;
     // cout << "testing a" << endl;
     ASSERT_EQ(a.numrows(), 1);
     ASSERT_EQ(a.numcols(0), 1);
@@ -107,7 +107,7 @@ TEST(grid, parameterizedConstructorInt) {
     ASSERT_NE(e.numrows(), 4);
     ASSERT_EQ(e.numcols(0), 0);
     ASSERT_ANY_THROW(e.numcols(1));
-    cout << "Finished Parameterized Constructor int tests" << endl;
+    // cout << "Finished Parameterized Constructor int tests" << endl;
 }
 
 TEST(grid, parameterizedConstructor) {
@@ -118,10 +118,10 @@ TEST(grid, parameterizedConstructor) {
     Grid<char> d(0, 8345);
     Grid<vector <map <int, int> > > crazy (19, 62);
 
-    cout << "Starting Varied Paramerized Constructor Tests" << endl;
+    // cout << "Starting Varied Paramerized Constructor Tests" << endl;
 
     // tests for grid a
-    cout << "testing varied a" << endl;
+    // cout << "testing varied a" << endl;
     ASSERT_EQ(a.numrows(), 57);
     ASSERT_EQ(a.numcols(0), 12);
     ASSERT_EQ(a.numcols(1), 12);
@@ -137,7 +137,7 @@ TEST(grid, parameterizedConstructor) {
     ASSERT_ANY_THROW(a.numcols(58));
 
     // tests for b
-    cout << "testing varied b" << endl;
+    // cout << "testing varied b" << endl;
     ASSERT_EQ(b.numrows(), 498);
     ASSERT_EQ(b.numcols(0), 861);
     ASSERT_EQ(b.numcols(200), 861);
@@ -165,7 +165,7 @@ TEST(grid, parameterizedConstructor) {
     ASSERT_EQ(crazy.numcols(10), 62);
     ASSERT_EQ(crazy.numcols(18), 62);
     ASSERT_ANY_THROW(crazy.numcols(19));
-    cout << "Finished Parameterized Constructor Varied tests" << endl;
+    // cout << "Finished Parameterized Constructor Varied tests" << endl;
 }
 
 TEST(grid, numRows) {
@@ -177,7 +177,7 @@ TEST(grid, numRows) {
     Grid<map<int , vector< set<string> > > > crazy (19, 62);
     Grid<int> plainJane;
 
-    cout << "Testing numrows" << endl;
+    // cout << "Testing numrows" << endl;
     
     // test a
     // cout << "testing numrows a" << endl;
@@ -207,7 +207,7 @@ TEST(grid, numRows) {
     // test plainJane
     ASSERT_EQ(plainJane.numrows(), 4);
     ASSERT_FALSE(plainJane.numrows() != 4);
-    cout << "Finished numrows tests" << endl;
+    // cout << "Finished numrows tests" << endl;
 
 }
 
@@ -225,7 +225,7 @@ TEST(grid, numCols) {
     Grid<vector<int> > d(23422, 0);
     Grid<char> e(0, 0);
 
-    cout << "Testing numcols" << endl;
+    // cout << "Testing numcols" << endl;
 
     // test plainA
     // cout << "testing numcols plainA" << endl;
@@ -293,12 +293,12 @@ TEST(grid, numCols) {
     ASSERT_ANY_THROW(e.numcols(1));
 
     // Finished this test
-    cout << "Finished numcols tests" << endl;
+    // cout << "Finished numcols tests" << endl;
 }
 
 TEST(grid, sizeOf) {
 
-    cout << "Testing grid size" << endl;
+    // cout << "Testing grid size" << endl;
 
     // Default constructor grids
     Grid<int> plainA;
@@ -368,7 +368,7 @@ TEST(grid, sizeOf) {
     ASSERT_FALSE(e.size() < 0);
     ASSERT_NE(e.size(), 1);
 
-    cout << "Finished size tests" << endl;
+    // cout << "Finished size tests" << endl;
 }
 
 TEST(grid, gridAccessOperator ) {
@@ -382,7 +382,7 @@ TEST(grid, gridAccessOperator ) {
     Grid<string> c(0, 1);
     Grid<vector<int> > d(23422, 0);
 
-    cout << "Testing operator()" << endl;
+    // cout << "Testing operator()" << endl;
 
     // test plainA
     // cout << "testing operator() plainA" << endl;
@@ -437,7 +437,7 @@ TEST(grid, gridAccessOperator ) {
     ASSERT_ANY_THROW(d(0, 1));
     ASSERT_ANY_THROW(d(23422, 0));
 
-    cout << "Finished operator() tests" << endl;
+    // cout << "Finished operator() tests" << endl;
 }
 
 // TEST(grid, _output) {
@@ -468,8 +468,9 @@ TEST(grid, copyConstructor) {
     //cout << "a's contents" << endl;
     //a._output();
     Grid<int> b(a);
-    // cout << "b's contents" << endl;
-    // b._output();
+    cout << "b's contents" << endl;
+    cout << b.numrows() << endl;
+    //b._output();
 }
 
 // TEST(grid, copyAssignmentOperator) {

@@ -164,6 +164,10 @@ public:
       CELL* otherCurr = other.Rows[r];
       CELL* thisCurr = this->Rows[r];
 
+      cout << &thisCurr << endl;
+      cout << &otherCurr << endl;
+
+
       for(size_t c = 1; c < this->Rows[r]->NumCols; ++c) {
         
         // Copy all remaining cells in the row
@@ -171,16 +175,22 @@ public:
         thisCurr->Next->Val = otherCurr->Next->Val;
         thisCurr->Next->NumCols = otherCurr->Next->NumCols;
 
+        cout << &thisCurr->Next << endl;
+        cout << &otherCurr->Next << endl;
+
         // Advance both pointers
         thisCurr = thisCurr->Next;
         otherCurr = otherCurr->Next;
       }
+      cout << endl;
     }
   }
 
   void deleteRow(size_t& r) {
     
+    // If there's still more than one cell remaining in the row
     while(this->Rows[r]->NumCols > 1) {
+      
       // Parallel pointers that we can walk down the list.
       CELL* prev = nullptr;
       CELL* curr = this->Rows[r];
@@ -191,6 +201,7 @@ public:
         prev = curr;
         curr = curr->Next;
       }
+
       // Delete the current node
       delete curr;
       // Set the prior node's next pointer to nullptr;
