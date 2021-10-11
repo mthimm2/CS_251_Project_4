@@ -167,7 +167,7 @@ public:
       for(size_t c = 1; c < other.Rows[r]->NumCols; ++c) {
         
         // Copy all remaining cells in the row
-        thisCurr->Next = new CELL(nullptr, otherCurr->Next->Val, otherCurr->Next->NumCols);
+        thisCurr->Next = new CELL(nullptr, otherCurr->Next->Val, 0);
 
         // Advance both pointers
         thisCurr = thisCurr->Next;

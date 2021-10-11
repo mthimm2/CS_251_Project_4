@@ -183,26 +183,31 @@ TEST(grid, numRows) {
     // cout << "testing numrows a" << endl;
     ASSERT_EQ(a.numrows(), 57);
     ASSERT_NE(a.numrows(), 4);
+    ASSERT_FALSE(a.numrows() != 57);
 
     // test b
     // cout << "testing numrows b" << endl;
     ASSERT_EQ(b.numrows(), 498);
     ASSERT_NE(b.numrows(), 4);
+    ASSERT_FALSE(b.numrows() != 498);
 
     // test c
     // cout << "testing numrows c" << endl;
     ASSERT_EQ(c.numrows(), 41);
     ASSERT_NE(c.numrows(), 4);
+    ASSERT_FALSE(c.numrows() != 41);
 
     // test d
     // cout << "testing numrows d" << endl;
     ASSERT_EQ(d.numrows(), 0);
     ASSERT_NE(d.numrows(), 4);
+    ASSERT_FALSE(d.numrows() != 0);
 
     // test crazy
     // cout << "testing numrows crazy" << endl;
     ASSERT_EQ(crazy.numrows(), 19);
     ASSERT_NE(crazy.numrows(), 4);
+    ASSERT_FALSE(crazy.numrows() != 19);    
 
     // test plainJane
     ASSERT_EQ(plainJane.numrows(), 4);
@@ -449,41 +454,7 @@ TEST(grid, gridAccessOperator ) {
     // cout << "Finished operator() tests" << endl;
 }
 
-TEST(grid, _output) {
-    Grid<int> a;
-    a(0,0) = 2;
-    a(1,1) = 4;
-    a(2,2) = 8;
-    a(3,3) = 16;
-    ASSERT_ANY_THROW(a(0,-1) = 2);
-    ASSERT_ANY_THROW(a(0, 4) = 2);
-    ASSERT_ANY_THROW(a(4, 0) = 2);
-    ASSERT_ANY_THROW(a(4,-1) = 2);
-    ASSERT_ANY_THROW(a(4, 4) = 2);
-    a._output();
-}
-
-TEST(grid, copyConstructor) {
-    Grid<int> a;
-    a(0,0) = 2;
-    a(1,1) = 4;
-    a(2,2) = 8;
-    a(3,3) = 16;
-    a._output();
-
-    Grid<int> b(a);
-    b._output();
-
-    Grid<string> c(31, 59);
-    c(15, 28) = "Gabagool";
-    Grid<string> d(c);
-    ASSERT_EQ(d(15, 28), c(15, 28));
-    ASSERT_EQ(d(0,0), c(0,0));
-    c._output();
-    d._output();
-}
-
-// TEST(grid, copyAssignmentOperator) {
+// TEST(grid, _output) {
 //     Grid<int> a;
 //     a(0,0) = 2;
 //     a(1,1) = 4;
@@ -494,10 +465,203 @@ TEST(grid, copyConstructor) {
 //     ASSERT_ANY_THROW(a(4, 0) = 2);
 //     ASSERT_ANY_THROW(a(4,-1) = 2);
 //     ASSERT_ANY_THROW(a(4, 4) = 2);
-//     Grid<int> b;
-//     b = a;
-//     b._output();
+//     a._output();
 // }
+
+TEST(grid, copyConstructor) {
+    
+    // Set up a default grid and modify its diagonal
+    Grid<int> a;
+    a(0,0) = 2;
+    a(1,1) = 4;
+    a(2,2) = 8;
+    a(3,3) = 16;
+    // a._output();
+
+    // Copy that grid via the copy constructor
+    Grid<int> b(a);
+    // b._output();
+
+    // Ensure that b and a are identical
+    ASSERT_EQ(a(0,0), b(0,0));
+    ASSERT_EQ(a(1,1), b(1,1));
+    ASSERT_EQ(a(2,2), b(2,2));
+    ASSERT_EQ(a(3,3), b(3,3));
+    ASSERT_EQ(a.numrows(), 4);
+    ASSERT_EQ(a.numcols(0), 4);
+    ASSERT_EQ(a.numcols(1), 4);
+    ASSERT_EQ(a.numcols(2), 4);
+    ASSERT_EQ(a.numcols(3), 4);
+    ASSERT_EQ(a.size(), 16);
+
+    // Grids with precarious dimensions
+    Grid<int> onebyzero(1,0);
+    Grid<int> zerobyone(0,1);
+    Grid<int> zerobyzero(0,0);
+
+    // Copy into the odd dimensioned grids
+    Grid<int> x(onebyzero);
+    ASSERT_ANY_THROW(x(0,0));
+    ASSERT_ANY_THROW(x(-1,0));
+    ASSERT_ANY_THROW(x(0,-1));
+    ASSERT_ANY_THROW(x(-1,-1));
+
+    // Next wonk grid
+    Grid<int> y(zerobyone);
+    ASSERT_ANY_THROW(y(0,0));
+    ASSERT_ANY_THROW(y(-1,0));
+    ASSERT_ANY_THROW(y(0,-1));
+    ASSERT_ANY_THROW(y(-1,-1));
+
+    // Dimensionless
+    Grid<int> z(zerobyzero);
+    ASSERT_ANY_THROW(z(0,0));
+    ASSERT_ANY_THROW(z(-1,0));
+    ASSERT_ANY_THROW(z(0,-1));
+    ASSERT_ANY_THROW(z(1,-1));
+
+    // Another grid of fine, italian delicacies
+    Grid<string> c(31, 59);
+    c(15, 28) = "Gabagool";
+
+    // Basic stuff
+    ASSERT_EQ(c.numrows(), 31);
+    ASSERT_EQ(c.numcols(0), 59);
+    ASSERT_EQ(c.numcols(4), 59);
+    ASSERT_EQ(c.numcols(12), 59);
+    ASSERT_EQ(c.numcols(30), 59);
+    ASSERT_EQ(c.size(), 31*59);
+
+    // Copy the string grid
+    Grid<string> d(c);
+
+    // String grid equivalence
+    ASSERT_EQ(d(15, 28), c(15, 28));
+    ASSERT_EQ(d(0,0), c(0,0));
+    ASSERT_ANY_THROW(c(31, 0));
+    ASSERT_ANY_THROW(d(31,0));
+
+    // Test bad indices for original string grid
+    ASSERT_ANY_THROW(c(30,59));
+    ASSERT_ANY_THROW(c(30,-1));
+    ASSERT_ANY_THROW(c(30,425));
+    ASSERT_ANY_THROW(c(-1,0));
+    ASSERT_ANY_THROW(c(-1,-1));
+
+    // bad indices for other string grid
+    ASSERT_ANY_THROW(d(30,59));
+    ASSERT_ANY_THROW(d(30,-1));
+    ASSERT_ANY_THROW(d(30,425));
+    ASSERT_ANY_THROW(d(-1,0));
+    ASSERT_ANY_THROW(d(-1,-1));
+
+    // Chain copy
+    Grid<string> chain(d);
+
+    // Make sure the data is still intact
+    ASSERT_EQ(d(15, 28), chain(15, 28));
+    ASSERT_EQ(d(0,0), chain(0,0));
+
+    // Try bad indices for the chain copy
+    ASSERT_ANY_THROW(chain(30,59));
+    ASSERT_ANY_THROW(chain(30,-1));
+    ASSERT_ANY_THROW(chain(30,425));
+    ASSERT_ANY_THROW(chain(-1,0));
+    ASSERT_ANY_THROW(chain(-1,-1));
+}
+
+TEST(grid, copyAssignmentOperator) {
+    
+    // default grid
+    Grid<int> a;
+
+    // Alter its diagonal
+    a(0,0) = 2;
+    a(1,1) = 4;
+    a(2,2) = 8;
+    a(3,3) = 16;
+
+    // Try some bad accesses of the original
+    ASSERT_ANY_THROW(a(0,-1) = 2);
+    ASSERT_ANY_THROW(a(0, 4) = 2);
+    ASSERT_ANY_THROW(a(4, 0) = 2);
+    ASSERT_ANY_THROW(a(4,-1) = 2);
+    ASSERT_ANY_THROW(a(4, 4) = 2);
+    
+    // New default grid
+    Grid<int> b;
+
+    // Copy a over to b
+    b = a;
+
+    // Verify the diagonal
+    ASSERT_EQ(b(0,0), 2);
+    ASSERT_EQ(b(1,1), 4);
+    ASSERT_EQ(b(2,2), 8);
+    ASSERT_EQ(b(3,3), 16);
+
+    // Bad accesses on the copy
+    ASSERT_ANY_THROW(b(-1,-1));
+    ASSERT_ANY_THROW(b(0,124));
+    ASSERT_ANY_THROW(b(0,-1));
+    ASSERT_ANY_THROW(b(-1,3));
+
+    // Assign the copy to itself to make sure it doesn't break
+    b = b;
+
+    // Verify the diagonal
+    ASSERT_EQ(b(0,0), 2);
+    ASSERT_EQ(b(1,1), 4);
+    ASSERT_EQ(b(2,2), 8);
+    ASSERT_EQ(b(3,3), 16);
+
+    // Bad accesses on the copy
+    ASSERT_ANY_THROW(b(-1,-1));
+    ASSERT_ANY_THROW(b(0,124));
+    ASSERT_ANY_THROW(b(0,-1));
+    ASSERT_ANY_THROW(b(-1,3));
+
+    Grid<int> c;
+    c = b;
+
+    // Verify that c matches b, which matches a
+    ASSERT_EQ(c(0,0), 2);
+    ASSERT_EQ(c(1,1), 4);
+    ASSERT_EQ(c(2,2), 8);
+    ASSERT_EQ(c(3,3), 16);
+
+    // bad accesses on c
+    ASSERT_ANY_THROW(c(-1,-1));
+    ASSERT_ANY_THROW(c(0,124));
+    ASSERT_ANY_THROW(c(0,-1));
+    ASSERT_ANY_THROW(c(-1,3));
+
+    // Grids with precarious dimensions
+    Grid<int> onebyzero(1,0);
+    Grid<int> zerobyone(0,1);
+    Grid<int> zerobyzero(0,0);
+
+    // Copy into the odd dimensioned grids
+    b = onebyzero;
+    ASSERT_ANY_THROW(b(0,0));
+    ASSERT_ANY_THROW(b(-1,0));
+    ASSERT_ANY_THROW(b(0,-1));
+    ASSERT_ANY_THROW(b(-1,-1));
+
+    // Next wonk grid
+    b = zerobyone;
+    ASSERT_ANY_THROW(b(0,0));
+    ASSERT_ANY_THROW(b(-1,0));
+    ASSERT_ANY_THROW(b(0,-1));
+    ASSERT_ANY_THROW(b(-1,-1));
+
+    // Dimensionless
+    b = zerobyzero;
+    ASSERT_ANY_THROW(b(0,0));
+    ASSERT_ANY_THROW(b(-1,0));
+    ASSERT_ANY_THROW(b(0,-1));
+    ASSERT_ANY_THROW(b(1,-1));
+}
 // TO DO:  Write many TESTs, at least one for, if not more,
 // for each member function.  Each tests should have 100s of assertions.
 
