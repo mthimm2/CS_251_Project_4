@@ -158,31 +158,22 @@ public:
     for(size_t r = 0; r < this->NumRows; ++r) {
 
       // Get two parallel pointers ready for the copy
-      this->Rows[r] = other.Rows[r];
+      this->Rows[r] = new CELL(nullptr, other.Rows[r]->Val, other.Rows[r]->NumCols);
 
       // Parallel pointers for each grid
       CELL* otherCurr = other.Rows[r];
       CELL* thisCurr = this->Rows[r];
 
-      cout << &thisCurr << endl;
-      cout << &otherCurr << endl;
-
-
-      for(size_t c = 1; c < this->Rows[r]->NumCols; ++c) {
+      for(size_t c = 1; c < other.Rows[r]->NumCols; ++c) {
         
         // Copy all remaining cells in the row
-        thisCurr->Next = otherCurr->Next;
-        thisCurr->Next->Val = otherCurr->Next->Val;
-        thisCurr->Next->NumCols = otherCurr->Next->NumCols;
-
-        cout << &thisCurr->Next << endl;
-        cout << &otherCurr->Next << endl;
+        thisCurr->Next = new CELL(nullptr, otherCurr->Next->Val, otherCurr->Next->NumCols);
 
         // Advance both pointers
         thisCurr = thisCurr->Next;
         otherCurr = otherCurr->Next;
       }
-      cout << endl;
+      // cout << endl;
     }
   }
 

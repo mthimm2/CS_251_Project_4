@@ -406,6 +406,15 @@ TEST(grid, gridAccessOperator ) {
     ASSERT_NE(plainA(0, 0), 1);
     ASSERT_FALSE(plainA(0, 0) > 0);
     ASSERT_FALSE(plainA(0, 0) < 0);
+    plainA(0,0) = 2;
+    plainA(1,1) = 4;
+    plainA(2,2) = 8;
+    plainA(3,3) = 16;
+    ASSERT_ANY_THROW(plainA(0,-1) = 2);
+    ASSERT_ANY_THROW(plainA(0, 4) = 2);
+    ASSERT_ANY_THROW(plainA(4, 0) = 2);
+    ASSERT_ANY_THROW(plainA(4,-1) = 2);
+    ASSERT_ANY_THROW(plainA(4, 4) = 2);
 
     // test a
     // cout << "testing operator() a" << endl;
@@ -440,21 +449,7 @@ TEST(grid, gridAccessOperator ) {
     // cout << "Finished operator() tests" << endl;
 }
 
-// TEST(grid, _output) {
-//     Grid<int> a;
-//     a(0,0) = 2;
-//     a(1,1) = 4;
-//     a(2,2) = 8;
-//     a(3,3) = 16;
-//     ASSERT_ANY_THROW(a(0,-1) = 2);
-//     ASSERT_ANY_THROW(a(0, 4) = 2);
-//     ASSERT_ANY_THROW(a(4, 0) = 2);
-//     ASSERT_ANY_THROW(a(4,-1) = 2);
-//     ASSERT_ANY_THROW(a(4, 4) = 2);
-//     a._output();
-// }
-
-TEST(grid, copyConstructor) {
+TEST(grid, _output) {
     Grid<int> a;
     a(0,0) = 2;
     a(1,1) = 4;
@@ -465,12 +460,27 @@ TEST(grid, copyConstructor) {
     ASSERT_ANY_THROW(a(4, 0) = 2);
     ASSERT_ANY_THROW(a(4,-1) = 2);
     ASSERT_ANY_THROW(a(4, 4) = 2);
-    //cout << "a's contents" << endl;
-    //a._output();
+    a._output();
+}
+
+TEST(grid, copyConstructor) {
+    Grid<int> a;
+    a(0,0) = 2;
+    a(1,1) = 4;
+    a(2,2) = 8;
+    a(3,3) = 16;
+    a._output();
+
     Grid<int> b(a);
-    cout << "b's contents" << endl;
-    cout << b.numrows() << endl;
-    //b._output();
+    b._output();
+
+    Grid<string> c(31, 59);
+    c(15, 28) = "Gabagool";
+    Grid<string> d(c);
+    ASSERT_EQ(d(15, 28), c(15, 28));
+    ASSERT_EQ(d(0,0), c(0,0));
+    c._output();
+    d._output();
 }
 
 // TEST(grid, copyAssignmentOperator) {
