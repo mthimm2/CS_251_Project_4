@@ -13,6 +13,7 @@ using namespace std;
 int main() {
 	Maze m(4, 4);
     MazeCell* start = m.mazeFor(kYourName);
+    
     // Put your break point here!
     
     if (isPathToFreedom(start, kPathOutOfRegularMaze)) {

@@ -756,8 +756,8 @@ TEST(maze, invalidChar) {
    EXPECT_FALSE(isPathToFreedom(start, "e"));
    EXPECT_FALSE(isPathToFreedom(start, "w"));
 
-   ///* These are tricky - they're legal paths that happen to have an unexpected
-   // * character at the end.
+   // These are tricky - they're legal paths that happen to have an unexpected
+   // character at the end.
    start = m.getStart(2, 2);
    EXPECT_FALSE(isPathToFreedom(start, "ESNWWNNEWSSESWWNQ"));
    EXPECT_FALSE(isPathToFreedom(start, "SWWNSEENWNNEWSSEES!!!"));
@@ -765,13 +765,13 @@ TEST(maze, invalidChar) {
 
 }
 
-// Provided Test: This tests your personalized regular maze to see if you were
-// able to escape.
-TEST(maze, escapeRegularMaze) {
-   Maze m(4, 4);
-   MazeCell* start = m.mazeFor(kYourName);
-   EXPECT_TRUE(isPathToFreedom(start, kPathOutOfRegularMaze));
-}
+// // Provided Test: This tests your personalized regular maze to see if you were
+// // able to escape.
+// TEST(maze, escapeRegularMaze) {
+//    Maze m(4, 4);
+//    MazeCell* start = m.mazeFor(kYourName);
+//    EXPECT_TRUE(isPathToFreedom(start, kPathOutOfRegularMaze));
+// }
 //
 //// Provided Test: This tests your personalized twisty maze to see if you were
 //// able to escape.

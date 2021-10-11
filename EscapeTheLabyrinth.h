@@ -13,7 +13,7 @@ using namespace std;
  * do NOT edit the value of kYourName. Changing kYourName will change which
  * maze you get back, which might invalidate all your hard work!
  */
-const string kYourName = "TO DO: Replace this string with your name.";
+const string kYourName = "Max Thimmig";
 
 /* Change these constants to contain the paths out of your mazes. */
 const string kPathOutOfRegularMaze =
@@ -58,16 +58,16 @@ bool checkMove(MazeCell* currCell, const char& move) {
   return true;
 }
 
-void makeMove(const char& move, MazeCell* currCell) {
+void makeMove(const char& move, MazeCell*& currCell) {
+  
+  // If we're here, then the move has been vetted to be legal
+  // Therefore, just move in the given direction
   if(move == 'N') {
     currCell = currCell->north;
-
   } else if(move == 'S') {
       currCell = currCell->south;
-
   } else if(move == 'E') {
       currCell = currCell->east;
-
   } else if(move == 'W') {
       currCell = currCell->west;
   } 
@@ -116,7 +116,6 @@ bool isPathToFreedom(MazeCell* start, const string& moves) {
     } else {
       // Otherwise, make the legal move
       makeMove(move, start);
-
       // Then check if we've hit the motherlode
       checkCurrentTileForLoot(start, itemsAcquired);
     }
