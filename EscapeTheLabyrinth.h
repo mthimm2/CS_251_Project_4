@@ -17,9 +17,9 @@ const string kYourName = "Max Thimmig";
 
 /* Change these constants to contain the paths out of your mazes. */
 const string kPathOutOfRegularMaze =
-    "TO DO: Replace this string with your path out of the normal maze.";
+    "SENSESWSWENENENW";
 const string kPathOutOfTwistyMaze =
-    "TO DO: Replace this string with your path out of the twisty maze.";
+    "NNESEWSENSNES";
 
 bool checkMove(MazeCell* currCell, const char& move) {
 

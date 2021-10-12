@@ -1,0 +1,37 @@
+Breakpoint 1 at 0x30d9: file ExploreTheTwistyLabyrinth.cpp, line 20.
+Starting program: /home/maxthimmig/Documents/School_Stuff/CS_251/Project_4/ExploreTheTwistyLabyrinth.exe 
+
+Breakpoint 1, main () at ExploreTheTwistyLabyrinth.cpp:20
+20	    if (isPathToFreedom(start, kPathOutOfTwistyMaze)) {
+m = {_vptr.Maze = 0x55555556dbd0 <vtable for Maze+16>, grid = {_vptr.Grid = 0x55555556dbf0 <vtable for Grid<MazeCell*>+16>, 
+    NumRows = 4, Rows = 0x555555580f20}, numRows = 4, numCols = 4, kNumTwistyRooms = 12}
+start = 0x555555581880
+$1 = {whatsHere = "", north = 0x5555555818d0, south = 0x0, east = 0x555555581c80, west = 0x0}
+$2 = {whatsHere = "Spellbook", north = 0x555555581880, south = 0x555555581b00, east = 0x0, west = 0x5555555819c0}
+$3 = {whatsHere = "", north = 0x0, south = 0x555555581a10, east = 0x555555581880, west = 0x0}
+$4 = {whatsHere = "", north = 0x0, south = 0x555555581c80, east = 0x555555581920, west = 0x555555581ab0}
+$5 = {whatsHere = "Potion", north = 0x0, south = 0x0, east = 0x0, west = 0x555555581a10}
+$6 = {whatsHere = "", north = 0x555555581a60, south = 0x5555555818d0, east = 0x0, west = 0x555555581b50}
+$7 = {whatsHere = "", north = 0x0, south = 0x0, east = 0x555555581c30, west = 0x555555581b00}
+$8 = {whatsHere = "", north = 0x0, south = 0x555555581970, east = 0x555555581a60, west = 0x0}
+$9 = {whatsHere = "Wand", north = 0x0, south = 0x555555581c30, east = 0x0, west = 0x0}
+Breakpoint 1 at 0x30fe: file ExploreTheRegularLabyrinth.cpp, line 19.
+Starting program: /home/maxthimmig/Documents/School_Stuff/CS_251/Project_4/ExploreTheRegularLabyrinth.exe 
+
+Breakpoint 1, main () at ExploreTheRegularLabyrinth.cpp:19
+19	    if (isPathToFreedom(start, kPathOutOfRegularMaze)) {
+m = {_vptr.Maze = 0x55555556bbd0 <vtable for Maze+16>, grid = {_vptr.Grid = 0x55555556bbf0 <vtable for Grid<MazeCell*>+16>, 
+    NumRows = 4, Rows = 0x55555557ef20}, numRows = 4, numCols = 4, kNumTwistyRooms = 12}
+start = 0x55555557f380
+$1 = {whatsHere = "", north = 0x0, south = 0x55555557f4c0, east = 0x0, west = 0x0}
+$2 = {whatsHere = "", north = 0x55555557f380, south = 0x0, east = 0x55555557f510, west = 0x0}
+$3 = {whatsHere = "", north = 0x55555557f3d0, south = 0x0, east = 0x55555557f560, west = 0x55555557f4c0}
+$4 = {whatsHere = "Spellbook", north = 0x0, south = 0x55555557f510, east = 0x0, west = 0x0}
+$5 = {whatsHere = "", north = 0x0, south = 0x55555557f6a0, east = 0x55555557f5b0, west = 0x55555557f510}
+$6 = {whatsHere = "", north = 0x55555557f470, south = 0x55555557f6f0, east = 0x0, west = 0x55555557f560}
+$7 = {whatsHere = "", north = 0x0, south = 0x55555557f5b0, east = 0x0, west = 0x55555557f420}
+$8 = {whatsHere = "Potion", north = 0x0, south = 0x0, east = 0x55555557f470, west = 0x0}
+$9 = {whatsHere = "", north = 0x55555557f560, south = 0x0, east = 0x0, west = 0x55555557f650}
+$10 = {whatsHere = "", north = 0x0, south = 0x55555557f790, east = 0x55555557f6a0, west = 0x55555557f600}
+$11 = {whatsHere = "", north = 0x55555557f650, south = 0x0, east = 0x55555557f7e0, west = 0x55555557f740}
+$12 = {whatsHere = "Wand", north = 0x0, south = 0x0, east = 0x55555557f790, west = 0x0}
