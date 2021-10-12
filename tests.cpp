@@ -653,12 +653,6 @@ TEST(grid, copyAssignmentOperator) {
   ASSERT_ANY_THROW(b(0, -1));
   ASSERT_ANY_THROW(b(1, -1));
 }
-// TO DO:  Write many TESTs, at least one for, if not more,
-// for each member function.  Each tests should have 100s of assertions.
-
-// TO DO:  As you get to each milestone, you can comment out these provided
-// tests.  They currently use grid.h and will segfault until you implement
-// grid correctly.
 
 // Provided Test: sample maze from handout, make lots more yourself!
 TEST(maze, basic) {
@@ -765,21 +759,21 @@ TEST(maze, invalidChar) {
 
 }
 
-// // Provided Test: This tests your personalized regular maze to see if you were
-// // able to escape.
-// TEST(maze, escapeRegularMaze) {
-//    Maze m(4, 4);
-//    MazeCell* start = m.mazeFor(kYourName);
-//    EXPECT_TRUE(isPathToFreedom(start, kPathOutOfRegularMaze));
-// }
-//
-//// Provided Test: This tests your personalized twisty maze to see if you were
-//// able to escape.
-// TEST(maze, escapeTwistyMaze) {
-//    Maze m(4, 4);
-//    MazeCell* start = m.twistyMazeFor(kYourName);
-//    EXPECT_TRUE(isPathToFreedom(start, kPathOutOfTwistyMaze));
-//}
+// Provided Test: This tests your personalized regular maze to see if you were
+// able to escape.
+TEST(maze, escapeRegularMaze) {
+   Maze m(4, 4);
+   MazeCell* start = m.mazeFor(kYourName);
+   EXPECT_TRUE(isPathToFreedom(start, kPathOutOfRegularMaze));
+}
+
+// Provided Test: This tests your personalized twisty maze to see if you were
+// able to escape.
+TEST(maze, escapeTwistyMaze) {
+   Maze m(4, 4);
+   MazeCell* start = m.twistyMazeFor(kYourName);
+   EXPECT_TRUE(isPathToFreedom(start, kPathOutOfTwistyMaze));
+}
 
 int main(int argc, char** argv) {
   testing::InitGoogleTest(&argc, argv);
